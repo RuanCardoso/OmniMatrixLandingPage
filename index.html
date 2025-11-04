@@ -1,1 +1,507 @@
-OmniMatrix
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniMatrix - Automação Privada e Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a8b3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #b8c1ec;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .company-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .company-info p {
+            color: #b8c1ec;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: #b8c1ec;
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.03);
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-content p, .section-content ul {
+            color: #b8c1ec;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .section-content ul {
+            list-style-position: inside;
+            padding-left: 20px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 30px;
+            margin: 60px 0;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #b8c1ec;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .contact-item span {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-item h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: #b8c1ec;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7a85b3;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .section-content {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">OmniMatrix</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>OmniMatrix</h1>
+                    <p class="subtitle">Software Privado de Automação Inteligente para Empresas</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="company-info">
+                <h2>Sobre a OmniMatrix</h2>
+                <p><strong>Nome da Empresa:</strong> OmniMatrix Tecnologia e Automação Ltda.</p>
+                <p><strong>Descrição:</strong> A OmniMatrix é uma empresa especializada em desenvolvimento de software privado de automação empresarial. Oferecemos soluções personalizadas e exclusivas para otimização de processos, integração de sistemas e automação inteligente, projetadas especificamente para as necessidades únicas de cada cliente.</p>
+            </div>
+
+            <section class="features">
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Alta Performance</h3>
+                    <p>Software de automação otimizado para máxima eficiência operacional, processamento rápido e resultados consistentes em suas operações empresariais.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Segurança e Privacidade</h3>
+                    <p>Acesso exclusivo e privado com criptografia avançada. Proteção total dos seus dados e processos críticos de negócio.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Soluções Personalizadas</h3>
+                    <p>Software desenvolvido sob medida para atender os requisitos específicos da sua empresa, integrando-se perfeitamente aos seus sistemas existentes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Análise e Relatórios</h3>
+                    <p>Dashboards detalhados, métricas em tempo real e relatórios personalizados para tomada de decisões estratégicas baseada em dados.</p>
+                </div>
+            </section>
+
+            <div class="section">
+                <div class="section-content">
+                    <h2>Política de Reembolsos e Contestações</h2>
+                    <p>Na OmniMatrix, trabalhamos com licenciamento de software privado e personalizado. Devido à natureza exclusiva e customizada de nossos produtos:</p>
+                    <ul>
+                        <li>Não oferecemos reembolsos após a entrega e ativação do software, pois cada solução é desenvolvida especificamente para o cliente.</li>
+                        <li>Em caso de problemas técnicos ou bugs, garantimos suporte completo e correções sem custos adicionais durante o período de garantia.</li>
+                        <li>Contestações devem ser enviadas por e-mail para suporte@omnimatrix.com.br com detalhamento do problema.</li>
+                        <li>Nossa equipe analisará cada caso individualmente e responderá em até 5 dias úteis.</li>
+                        <li>Em situações excepcionais, a critério da OmniMatrix, poderão ser oferecidas alternativas como créditos para serviços futuros ou ajustes no software.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-content">
+                    <h2>Política de Cancelamento</h2>
+                    <p>Para licenças de software com pagamento recorrente ou projetos em andamento:</p>
+                    <ul>
+                        <li>Solicitações de cancelamento devem ser enviadas por escrito para contato@omnimatrix.com.br com no mínimo 30 dias de antecedência.</li>
+                        <li>O cancelamento será efetivado ao final do período de faturamento vigente.</li>
+                        <li>Pagamentos já efetuados não serão reembolsados, mas o acesso ao software será mantido até o fim do período contratado.</li>
+                        <li>Em projetos de desenvolvimento em andamento, o cancelamento resultará em cobrança proporcional ao trabalho já realizado.</li>
+                        <li>Após o cancelamento, backups dos dados podem ser fornecidos mediante solicitação, respeitando os termos contratuais.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-content">
+                    <h2>Restrições Legais e de Exportação</h2>
+                    <p>O software OmniMatrix está sujeito às seguintes restrições:</p>
+                    <ul>
+                        <li>Licenciamento exclusivo: O software é licenciado, não vendido. O cliente não adquire propriedade do código-fonte.</li>
+                        <li>Uso restrito: O software deve ser utilizado apenas para fins empresariais legítimos e em conformidade com as leis brasileiras.</li>
+                        <li>Proibição de revenda: É estritamente proibida a revenda, sublicenciamento ou distribuição do software sem autorização expressa da OmniMatrix.</li>
+                        <li>Exportação: A exportação do software para outros países pode estar sujeita às leis de controle de exportação do Brasil. Consulte-nos antes de qualquer tentativa de uso internacional.</li>
+                        <li>Conformidade: O cliente é responsável por garantir que o uso do software esteja em conformidade com todas as leis e regulamentos aplicáveis à sua indústria.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-content">
+                    <h2>Termos de Serviço</h2>
+                    <p>Ao contratar os serviços da OmniMatrix, você concorda com os seguintes termos:</p>
+                    <ul>
+                        <li>O acesso ao software é pessoal e intransferível, protegido por credenciais únicas.</li>
+                        <li>A OmniMatrix se reserva o direito de atualizar e modificar o software para melhorias e correções de segurança.</li>
+                        <li>Garantimos 99% de uptime para serviços em nuvem, exceto durante manutenções programadas previamente comunicadas.</li>
+                        <li>O cliente é responsável pela segurança de suas credenciais de acesso e deve notificar imediatamente qualquer uso não autorizado.</li>
+                        <li>A OmniMatrix não se responsabiliza por perdas decorrentes de uso indevido, negligência ou violação dos termos de serviço.</li>
+                        <li>Todos os dados do cliente são tratados conforme a Lei Geral de Proteção de Dados (LGPD).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Solicite Acesso ao Software Privado</h2>
+                <p>Entre em contato com nossa equipe para conhecer nossas soluções exclusivas de automação</p>
+                <a href="#contato" class="btn">Entrar em Contato</a>
+            </div>
+
+            <section id="contato" class="contact-section">
+                <h2>Atendimento ao Cliente e Suporte</h2>
+                <p class="subtitle">Nossa equipe está disponível para atender você através dos seguintes canais</p>
+
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <h4>E-mail Comercial</h4>
+                        <p>Para orçamentos e informações sobre produtos</p>
+                        <a href="mailto:contato@omnimatrix.com.br">contato@omnimatrix.com.br</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>💬</span>
+                        <h4>Suporte Técnico</h4>
+                        <p>Assistência técnica e resolução de problemas</p>
+                        <a href="mailto:suporte@omnimatrix.com.br">suporte@omnimatrix.com.br</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <h4>WhatsApp</h4>
+                        <p>Atendimento rápido via mensagem</p>
+                        <a href="https://wa.me/5592981234567" target="_blank">+55 92 98123-4567</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <h4>Telefone</h4>
+                        <p>Atendimento comercial de segunda a sexta, 9h às 18h</p>
+                        <a href="tel:+5592981234567">+55 92 98123-4567</a>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding: 30px; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px;">Horário de Atendimento</h3>
+                    <p style="color: #b8c1ec;">Segunda a Sexta: 9h às 18h (Horário de Brasília)</p>
+                    <p style="color: #b8c1ec;">Suporte de emergência disponível 24/7 para clientes com contrato premium</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>OmniMatrix Tecnologia e Automação Ltda.</strong></p>
+            <p>CNPJ: 00.000.000/0001-00</p>
+            <p>Endereço: Av. Principal, 1000 - Centro, Manaus - AM, CEP 69000-000</p>
+            <p style="margin-top: 20px;">&copy; 2025 OmniMatrix. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
